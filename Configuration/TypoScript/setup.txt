@@ -1,0 +1,30 @@
+plugin.tx_nxshowroom {
+	view {
+		templateRootPath = {$plugin.tx_nxshowroom.view.templateRootPath}
+		partialRootPath = {$plugin.tx_nxshowroom.view.partialRootPath}
+		layoutRootPath = {$plugin.tx_nxshowroom.view.layoutRootPath}
+	}
+	persistence {
+		storagePid = {$plugin.tx_nxshowroom.persistence.storagePid}
+	}
+}
+
+plugin.tx_nxshowroom._CSS_DEFAULT_STYLE (
+	input.f3-form-error {
+		background-color:#FF9F9F;
+		border: 1px #FF0000 solid;
+	}
+
+	.tx-nxshowroom table {
+		border-collapse:separate;
+		border-spacing:10px;
+	}
+
+	.tx-nxshowroom table th {
+		font-weight:bold;
+	}
+
+	.tx-nxshowroom table td {
+		vertical-align:top;
+	}
+)

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>database</type>
+		<description>Language labels for database tables/fields belonging to extension 'nxshowroom'</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="tx_nxshowroom_domain_model_resource">Resource</label>
+			<label index="tx_nxshowroom_domain_model_resource.title">Title</label>
+			<label index="tx_nxshowroom_domain_model_resource.description">Description</label>
+			<label index="tx_nxshowroom_domain_model_resource.images">Images</label>
+			<label index="tx_nxshowroom_domain_model_resource.resource">Resource</label>
+			<label index="tx_nxshowroom_domain_model_resource.res_type">Res Type</label>
+			<label index="tx_nxshowroom_domain_model_resource.tags">Tags</label>
+
+			<label index="tx_nxshowroom_domain_model_image">Image</label>
+			<label index="tx_nxshowroom_domain_model_image.image">Image</label>
+			<label index="tx_nxshowroom_domain_model_image.title">Title</label>
+			<label index="tx_nxshowroom_domain_model_image.description">Description</label>
+			<label index="tx_nxshowroom_domain_model_image.resource">Resource</label>
+
+			<label index="tx_nxshowroom_domain_model_type">Type</label>
+			<label index="tx_nxshowroom_domain_model_type.title">Title</label>
+			<label index="tx_nxshowroom_domain_model_type.description">Description</label>
+			<label index="tx_nxshowroom_domain_model_type.resource">Resource</label>
+
+			<label index="tx_nxshowroom_domain_model_tags">Tags</label>
+			<label index="tx_nxshowroom_domain_model_tags.title">Title</label>
+			<label index="tx_nxshowroom_domain_model_tags.resource">Resource</label>
+
+		</languageKey>
+	</data>
+</T3locallang>
