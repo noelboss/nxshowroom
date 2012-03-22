@@ -48,7 +48,11 @@ overwriteSettings:
       Repository: merge
 
   Configuration:
-    #TCA: merge
+    TCA: 
+        Image.php keep
+        Resource.php merge
+        Tags.php keep
+        Type.php keep
     #TypoScript: keep
 
   Resources:

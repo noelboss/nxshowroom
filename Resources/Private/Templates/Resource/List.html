@@ -1,38 +1,53 @@
+{namespace nxsr=Tx_Nxshowroom_ViewHelpers}
 <f:layout name="Default" />
 
 This Template is responsible for creating a table of domain objects.
 
 If you modify this template, do not forget to change the overwrite settings
 in /Configuration/ExtensionBuilder/settings.yaml:
-  Resources:
-    Private:
-      Templates:
-        List.html: keep
+Resources:
+Private:
+Templates:
+List.html: keep
 
 Otherwise your changes will be overwritten the next time you save the extension in the extension builder
 
 <f:section name="main">
-<h1>Listing for Resource</h1>
+	<h1>Listing for Resource</h1>
 
-<f:flashMessages />
+	<f:flashMessages />
+	<ul class="thumbnails">
+		<f:for each="{resources}" as="resource">
+			<li class="span4">
+				<div class="thumbnail">
+					<div id="myCarousel{resource.uid}" class="carousel">
+						<!-- Carousel items -->
+						<div class="carousel-inner">
+							<f:for each="{resource.images}" as="image">
+								<div class="item">
+									<f:image src="uploads/tx_nxshowroom/{image.image}" alt="{image.title}" width="360c" height="180c"/>
+								</div>
+							</f:for>
+						</div>
+						<!-- Carousel nav -->
+						<a class="carousel-control left" href="#myCarousel{resource.uid}" data-slide="prev">&lsaquo;</a>
+						<a class="carousel-control right" href="#myCarousel{resource.uid}" data-slide="next">&rsaquo;</a>
+					</div>
 
-<table  class="tx_nxshowroom" >
-	<tr>
-		<th><f:translate key="tx_nxshowroom_domain_model_resource.title" /></th>
-		<th><f:translate key="tx_nxshowroom_domain_model_resource.description" /></th>
-		<th> </th>
-		<th> </th>
-	</tr>
 
-	<f:for each="{resources}" as="resource">
-		<tr>
-			<td><f:link.action action="show" arguments="{resource : resource}"> {resource.title}</f:link.action></td>
-			<td><f:link.action action="show" arguments="{resource : resource}"> {resource.description}</f:link.action></td>
-			<td><f:link.action action="edit" arguments="{resource : resource}">Edit</f:link.action></td>
-			<td><f:link.action action="delete" arguments="{resource : resource}">Delete</f:link.action></td>
-		</tr>
-	</f:for>
-</table>
+					<div class="caption">
+						<h5>{resource.title}
+							<span class="badge badge-info pull-right">{resource.resType.title}</span>
+						</h5>
 
-<f:link.action action="new">New Resource</f:link.action>
+
+						<f:format.crop maxCharacters="150">{resource.description}</f:format.crop>
+					</div>
+				</div>
+			</li>
+		</f:for>
+	</ul>
+
+
+	<f:link.action action="new">New Resource</f:link.action>
 </f:section>

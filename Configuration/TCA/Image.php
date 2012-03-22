@@ -132,6 +132,9 @@ $TCA['tx_nxshowroom_domain_model_image'] = array(
 				'type' => 'inline',
 				'foreign_table' => 'tx_nxshowroom_domain_model_resource',
 				'foreign_field' => 'image',
+				// manually added
+				'foreign_label' => 'title',
+				'foreign_field' => 'images',
 				'maxitems'      => 9999,
 				'appearance' => array(
 					'collapse' => 0,
@@ -140,11 +143,6 @@ $TCA['tx_nxshowroom_domain_model_image'] = array(
 					'showPossibleLocalizationRecords' => 1,
 					'showAllLocalizationLink' => 1
 				),
-			),
-		),
-		'resource' => array(
-			'config' => array(
-				'type' => 'passthrough',
 			),
 		),
 	),
