@@ -89,25 +89,16 @@ class Tx_Nxshowroom_Domain_Model_ResourceTest extends Tx_Extbase_Tests_Unit_Base
 	/**
 	 * @test
 	 */
-	public function getImagesReturnsInitialValueForObjectStorageContainingTx_Nxshowroom_Domain_Model_Image() { 
-		$newObjectStorage = new Tx_Extbase_Persistence_ObjectStorage();
-		$this->assertEquals(
-			$newObjectStorage,
-			$this->fixture->getImages()
-		);
-	}
+	public function getImagesReturnsInitialValueForString() { }
 
 	/**
 	 * @test
 	 */
-	public function setImagesForObjectStorageContainingTx_Nxshowroom_Domain_Model_ImageSetsImages() { 
-		$image = new Tx_Nxshowroom_Domain_Model_Image();
-		$objectStorageHoldingExactlyOneImages = new Tx_Extbase_Persistence_ObjectStorage();
-		$objectStorageHoldingExactlyOneImages->attach($image);
-		$this->fixture->setImages($objectStorageHoldingExactlyOneImages);
+	public function setImagesForStringSetsImages() { 
+		$this->fixture->setImages('Conceived at T3CON10');
 
 		$this->assertSame(
-			$objectStorageHoldingExactlyOneImages,
+			'Conceived at T3CON10',
 			$this->fixture->getImages()
 		);
 	}
@@ -115,32 +106,58 @@ class Tx_Nxshowroom_Domain_Model_ResourceTest extends Tx_Extbase_Tests_Unit_Base
 	/**
 	 * @test
 	 */
-	public function addImageToObjectStorageHoldingImages() {
-		$image = new Tx_Nxshowroom_Domain_Model_Image();
-		$objectStorageHoldingExactlyOneImage = new Tx_Extbase_Persistence_ObjectStorage();
-		$objectStorageHoldingExactlyOneImage->attach($image);
-		$this->fixture->addImage($image);
-
+	public function getAttachmentReturnsInitialValueForObjectStorageContainingTx_Nxshowroom_Domain_Model_Attachment() { 
+		$newObjectStorage = new Tx_Extbase_Persistence_ObjectStorage();
 		$this->assertEquals(
-			$objectStorageHoldingExactlyOneImage,
-			$this->fixture->getImages()
+			$newObjectStorage,
+			$this->fixture->getAttachment()
 		);
 	}
 
 	/**
 	 * @test
 	 */
-	public function removeImageFromObjectStorageHoldingImages() {
-		$image = new Tx_Nxshowroom_Domain_Model_Image();
+	public function setAttachmentForObjectStorageContainingTx_Nxshowroom_Domain_Model_AttachmentSetsAttachment() { 
+		$attachment = new Tx_Nxshowroom_Domain_Model_Attachment();
+		$objectStorageHoldingExactlyOneAttachment = new Tx_Extbase_Persistence_ObjectStorage();
+		$objectStorageHoldingExactlyOneAttachment->attach($attachment);
+		$this->fixture->setAttachment($objectStorageHoldingExactlyOneAttachment);
+
+		$this->assertSame(
+			$objectStorageHoldingExactlyOneAttachment,
+			$this->fixture->getAttachment()
+		);
+	}
+	
+	/**
+	 * @test
+	 */
+	public function addAttachmentToObjectStorageHoldingAttachment() {
+		$attachment = new Tx_Nxshowroom_Domain_Model_Attachment();
+		$objectStorageHoldingExactlyOneAttachment = new Tx_Extbase_Persistence_ObjectStorage();
+		$objectStorageHoldingExactlyOneAttachment->attach($attachment);
+		$this->fixture->addAttachment($attachment);
+
+		$this->assertEquals(
+			$objectStorageHoldingExactlyOneAttachment,
+			$this->fixture->getAttachment()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function removeAttachmentFromObjectStorageHoldingAttachment() {
+		$attachment = new Tx_Nxshowroom_Domain_Model_Attachment();
 		$localObjectStorage = new Tx_Extbase_Persistence_ObjectStorage();
-		$localObjectStorage->attach($image);
-		$localObjectStorage->detach($image);
-		$this->fixture->addImage($image);
-		$this->fixture->removeImage($image);
+		$localObjectStorage->attach($attachment);
+		$localObjectStorage->detach($attachment);
+		$this->fixture->addAttachment($attachment);
+		$this->fixture->removeAttachment($attachment);
 
 		$this->assertEquals(
 			$localObjectStorage,
-			$this->fixture->getImages()
+			$this->fixture->getAttachment()
 		);
 	}
 	
@@ -205,23 +222,23 @@ class Tx_Nxshowroom_Domain_Model_ResourceTest extends Tx_Extbase_Tests_Unit_Base
 	/**
 	 * @test
 	 */
-	public function getResTypeReturnsInitialValueForTx_Nxshowroom_Domain_Model_Type() { 
+	public function getTypeReturnsInitialValueForTx_Nxshowroom_Domain_Model_Type() { 
 		$this->assertEquals(
 			NULL,
-			$this->fixture->getResType()
+			$this->fixture->getType()
 		);
 	}
 
 	/**
 	 * @test
 	 */
-	public function setResTypeForTx_Nxshowroom_Domain_Model_TypeSetsResType() { 
+	public function setTypeForTx_Nxshowroom_Domain_Model_TypeSetsType() { 
 		$dummyObject = new Tx_Nxshowroom_Domain_Model_Type();
-		$this->fixture->setResType($dummyObject);
+		$this->fixture->setType($dummyObject);
 
 		$this->assertSame(
 			$dummyObject,
-			$this->fixture->getResType()
+			$this->fixture->getType()
 		);
 	}
 	

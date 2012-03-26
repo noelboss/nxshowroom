@@ -10,8 +10,9 @@
 			<label index="title.description">Project Title</label>
 			<label index="description.description">Description</label>
 			<label index="images.description">Images</label>
+			<label index="attachment.description">Attachments</label>
 			<label index="resource.description">Resource Relation</label>
-			<label index="res_type.description">Type</label>
+			<label index="type.description">Type</label>
 			<label index="tags.description">Tags</label>
 		</languageKey>
 	</data>

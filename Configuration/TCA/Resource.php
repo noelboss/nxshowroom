@@ -6,10 +6,10 @@ if (!defined ('TYPO3_MODE')) {
 $TCA['tx_nxshowroom_domain_model_resource'] = array(
 	'ctrl' => $TCA['tx_nxshowroom_domain_model_resource']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, description, images, resource, res_type, tags',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, description, images, attachment, resource, type, tags',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title, description, images, resource, res_type, tags,--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,starttime, endtime'),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title, description, images, attachment, resource, type, tags,--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,starttime, endtime'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -116,8 +116,21 @@ $TCA['tx_nxshowroom_domain_model_resource'] = array(
 			'exclude' => 0,
 			'label' => 'LLL:EXT:nxshowroom/Resources/Private/Language/locallang_db.xml:tx_nxshowroom_domain_model_resource.images',
 			'config' => array(
+				'type' => 'group',
+				'internal_type' => 'file',
+				'uploadfolder' => 'uploads/tx_nxshowroom',
+				'show_thumbs' => 1,
+				'size' => 5,
+				'allowed' => $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'],
+				'disallowed' => '',
+			),
+		),
+		'attachment' => array(
+			'exclude' => 0,
+			'label' => 'LLL:EXT:nxshowroom/Resources/Private/Language/locallang_db.xml:tx_nxshowroom_domain_model_resource.attachment',
+			'config' => array(
 				'type' => 'inline',
-				'foreign_table' => 'tx_nxshowroom_domain_model_image',
+				'foreign_table' => 'tx_nxshowroom_domain_model_attachment',
 				'foreign_field' => 'resource',
 				'maxitems'      => 9999,
 				'appearance' => array(
@@ -135,6 +148,7 @@ $TCA['tx_nxshowroom_domain_model_resource'] = array(
 			'config' => array(
 				'type' => 'select',
 				'foreign_table' => 'tx_nxshowroom_domain_model_resource',
+				'MM' => 'tx_nxshowroom_resource_resource_mm',
 				'size' => 10,
 				'autoSizeMax' => 30,
 				'maxitems' => 9999,
@@ -164,14 +178,29 @@ $TCA['tx_nxshowroom_domain_model_resource'] = array(
 				),
 			),
 		),
-		'res_type' => array(
+		'type' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:nxshowroom/Resources/Private/Language/locallang_db.xml:tx_nxshowroom_domain_model_resource.res_type',
+			'label' => 'LLL:EXT:nxshowroom/Resources/Private/Language/locallang_db.xml:tx_nxshowroom_domain_model_resource.type',
 			'config' => array(
 				'type' => 'select',
 				'foreign_table' => 'tx_nxshowroom_domain_model_type',
 				'minitems' => 0,
 				'maxitems' => 1,
+				'wizards' => array(
+					'_PADDING' => 1,
+					'_VERTICAL' => 1,
+					'add' => Array(
+						'type' => 'script',
+						'title' => 'Create new',
+						'icon' => 'add.gif',
+						'params' => array(
+							'table' => 'tx_nxshowroom_domain_model_type',
+							'pid' => '###CURRENT_PID###',
+							'setValue' => 'prepend'
+							),
+						'script' => 'wizard_add.php',
+					),
+				),
 			),
 		),
 		'tags' => array(
@@ -185,17 +214,10 @@ $TCA['tx_nxshowroom_domain_model_resource'] = array(
 				'autoSizeMax' => 30,
 				'maxitems' => 9999,
 				'multiple' => 0,
+				'renderMode' => 'checkbox',
 				'wizards' => array(
 					'_PADDING' => 1,
 					'_VERTICAL' => 1,
-					'edit' => array(
-						'type' => 'popup',
-						'title' => 'Edit',
-						'script' => 'wizard_edit.php',
-						'icon' => 'edit2.gif',
-						'popup_onlyOpenIfSelected' => 1,
-						'JSopenParams' => 'height=350,width=580,status=0,menubar=0,scrollbars=1',
-						),
 					'add' => Array(
 						'type' => 'script',
 						'title' => 'Create new',

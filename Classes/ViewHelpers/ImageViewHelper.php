@@ -55,11 +55,11 @@ class Tx_Nxshowroom_ViewHelpers_ImageViewHelper extends Tx_Fluid_ViewHelpers_Ima
 				if(file_exists($srcs[$i])){
 					$image_src = $srcs[$i];
 				}
-				else if(file_exists(Tx_Nxproducts_Utility_Base::$UPLOAD_FOLDER . $srcs[$i])){
-					$image_src = Tx_Nxproducts_Utility_Base::$UPLOAD_FOLDER . $srcs[$i];
+				else if(file_exists(Tx_Nxshowroom_Utility_Base::$UPLOAD_FOLDER . $srcs[$i])){
+					$image_src = Tx_Nxshowroom_Utility_Base::$UPLOAD_FOLDER . $srcs[$i];
 				}
-				else if(file_exists($image_src = Tx_Nxproducts_Utility_Base::$PUBLIC_FOLDER . $srcs[$i])){
-					$image_src = Tx_Nxproducts_Utility_Base::$PUBLIC_FOLDER . $srcs[$i];
+				else if(file_exists($image_src = Tx_Nxshowroom_Utility_Base::$PUBLIC_FOLDER . $srcs[$i])){
+					$image_src = Tx_Nxshowroom_Utility_Base::$PUBLIC_FOLDER . $srcs[$i];
 				} else {
 					$image_src = false;
 				}
@@ -76,11 +76,11 @@ class Tx_Nxshowroom_ViewHelpers_ImageViewHelper extends Tx_Fluid_ViewHelpers_Ima
 			if(file_exists($src)){
 				$image_src = $src;
 			}
-			else if(file_exists(Tx_Nxproducts_Utility_Base::$UPLOAD_FOLDER . $src)){
-				$image_src = Tx_Nxproducts_Utility_Base::$UPLOAD_FOLDER . $src;
+			else if(file_exists(Tx_Nxshowroom_Utility_Base::$UPLOAD_FOLDER . $src)){
+				$image_src = Tx_Nxshowroom_Utility_Base::$UPLOAD_FOLDER . $src;
 			}
-			else if(file_exists($image_src = Tx_Nxproducts_Utility_Base::$PUBLIC_FOLDER . $src)){
-				$image_src = Tx_Nxproducts_Utility_Base::$PUBLIC_FOLDER . $src;
+			else if(file_exists($image_src = Tx_Nxshowroom_Utility_Base::$PUBLIC_FOLDER . $src)){
+				$image_src = Tx_Nxshowroom_Utility_Base::$PUBLIC_FOLDER . $src;
 			} else {
 				$image_src = false;
 			}

@@ -10,15 +10,16 @@
 			<label index="tx_nxshowroom_domain_model_resource.title">Title</label>
 			<label index="tx_nxshowroom_domain_model_resource.description">Description</label>
 			<label index="tx_nxshowroom_domain_model_resource.images">Images</label>
+			<label index="tx_nxshowroom_domain_model_resource.attachment">Attachment</label>
 			<label index="tx_nxshowroom_domain_model_resource.resource">Resource</label>
-			<label index="tx_nxshowroom_domain_model_resource.res_type">Res Type</label>
+			<label index="tx_nxshowroom_domain_model_resource.type">Type</label>
 			<label index="tx_nxshowroom_domain_model_resource.tags">Tags</label>
 
-			<label index="tx_nxshowroom_domain_model_image">Image</label>
-			<label index="tx_nxshowroom_domain_model_image.image">Image</label>
-			<label index="tx_nxshowroom_domain_model_image.title">Title</label>
-			<label index="tx_nxshowroom_domain_model_image.description">Description</label>
-			<label index="tx_nxshowroom_domain_model_image.resource">Resource</label>
+			<label index="tx_nxshowroom_domain_model_attachment">Attachment</label>
+			<label index="tx_nxshowroom_domain_model_attachment.link">Link</label>
+			<label index="tx_nxshowroom_domain_model_attachment.title">Title</label>
+			<label index="tx_nxshowroom_domain_model_attachment.description">Description</label>
+			<label index="tx_nxshowroom_domain_model_attachment.resource">Resource</label>
 
 			<label index="tx_nxshowroom_domain_model_type">Type</label>
 			<label index="tx_nxshowroom_domain_model_type.title">Title</label>

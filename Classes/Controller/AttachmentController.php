@@ -32,72 +32,62 @@
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class Tx_Nxshowroom_Controller_TagsController extends Tx_Extbase_MVC_Controller_ActionController {
-
-	/**
-	 * action list
-	 *
-	 * @return void
-	 */
-	public function listAction() {
-		$tagss = $this->tagsRepository->findAll();
-		$this->view->assign('tagss', $tagss);
-	}
+class Tx_Nxshowroom_Controller_AttachmentController extends Tx_Extbase_MVC_Controller_ActionController {
 
 	/**
 	 * action new
 	 *
-	 * @param $newTags
-	 * @dontvalidate $newTags
+	 * @param $newAttachment
+	 * @dontvalidate $newAttachment
 	 * @return void
 	 */
-	public function newAction(Tx_Nxshowroom_Domain_Model_Tags $newTags = NULL) {
-		$this->view->assign('newTags', $newTags);
+	public function newAction(Tx_Nxshowroom_Domain_Model_Attachment $newAttachment = NULL) {
+		$this->view->assign('newAttachment', $newAttachment);
 	}
 
 	/**
 	 * action create
 	 *
-	 * @param $newTags
+	 * @param $newAttachment
 	 * @return void
 	 */
-	public function createAction(Tx_Nxshowroom_Domain_Model_Tags $newTags) {
-		$this->tagsRepository->add($newTags);
-		$this->flashMessageContainer->add('Your new Tags was created.');
+	public function createAction(Tx_Nxshowroom_Domain_Model_Attachment $newAttachment) {
+		$this->attachmentRepository->add($newAttachment);
+		$this->flashMessageContainer->add('Your new Attachment was created.');
 		$this->redirect('list');
 	}
 
 	/**
 	 * action edit
 	 *
-	 * @param $tags
+	 * @param $attachment
 	 * @return void
 	 */
-	public function editAction(Tx_Nxshowroom_Domain_Model_Tags $tags) {
-		$this->view->assign('tags', $tags);
+	public function editAction(Tx_Nxshowroom_Domain_Model_Attachment $attachment) {
+		$this->view->assign('attachment', $attachment);
 	}
 
 	/**
 	 * action update
 	 *
-	 * @param $tags
+	 * @param $attachment
 	 * @return void
 	 */
-	public function updateAction(Tx_Nxshowroom_Domain_Model_Tags $tags) {
-		$this->tagsRepository->update($tags);
-		$this->flashMessageContainer->add('Your Tags was updated.');
+	public function updateAction(Tx_Nxshowroom_Domain_Model_Attachment $attachment) {
+		$this->attachmentRepository->update($attachment);
+		$this->flashMessageContainer->add('Your Attachment was updated.');
 		$this->redirect('list');
 	}
 
 	/**
 	 * action delete
 	 *
-	 * @param $tags
+	 * @param $attachment
 	 * @return void
 	 */
-	public function deleteAction(Tx_Nxshowroom_Domain_Model_Tags $tags) {
-		$this->tagsRepository->remove($tags);
-		$this->flashMessageContainer->add('Your Tags was removed.');
+	public function deleteAction(Tx_Nxshowroom_Domain_Model_Attachment $attachment) {
+		$this->attachmentRepository->remove($attachment);
+		$this->flashMessageContainer->add('Your Attachment was removed.');
 		$this->redirect('list');
 	}
 

@@ -3,13 +3,13 @@ if (!defined ('TYPO3_MODE')) {
 	die ('Access denied.');
 }
 
-$TCA['tx_nxshowroom_domain_model_type'] = array(
-	'ctrl' => $TCA['tx_nxshowroom_domain_model_type']['ctrl'],
+$TCA['tx_nxshowroom_domain_model_attachment'] = array(
+	'ctrl' => $TCA['tx_nxshowroom_domain_model_attachment']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, description, resource',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, link, title, description, resource',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title, description, resource,--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,starttime, endtime'),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, link, title, description, resource,--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,starttime, endtime'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -37,8 +37,8 @@ $TCA['tx_nxshowroom_domain_model_type'] = array(
 				'items' => array(
 					array('', 0),
 				),
-				'foreign_table' => 'tx_nxshowroom_domain_model_type',
-				'foreign_table_where' => 'AND tx_nxshowroom_domain_model_type.pid=###CURRENT_PID### AND tx_nxshowroom_domain_model_type.sys_language_uid IN (-1,0)',
+				'foreign_table' => 'tx_nxshowroom_domain_model_attachment',
+				'foreign_table_where' => 'AND tx_nxshowroom_domain_model_attachment.pid=###CURRENT_PID### AND tx_nxshowroom_domain_model_attachment.sys_language_uid IN (-1,0)',
 			),
 		),
 		'l10n_diffsource' => array(
@@ -93,18 +93,27 @@ $TCA['tx_nxshowroom_domain_model_type'] = array(
 				),
 			),
 		),
-		'title' => array(
+		'link' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:nxshowroom/Resources/Private/Language/locallang_db.xml:tx_nxshowroom_domain_model_type.title',
+			'label' => 'LLL:EXT:nxshowroom/Resources/Private/Language/locallang_db.xml:tx_nxshowroom_domain_model_attachment.link',
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
 				'eval' => 'trim,required'
 			),
 		),
+		'title' => array(
+			'exclude' => 0,
+			'label' => 'LLL:EXT:nxshowroom/Resources/Private/Language/locallang_db.xml:tx_nxshowroom_domain_model_attachment.title',
+			'config' => array(
+				'type' => 'input',
+				'size' => 30,
+				'eval' => 'trim'
+			),
+		),
 		'description' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:nxshowroom/Resources/Private/Language/locallang_db.xml:tx_nxshowroom_domain_model_type.description',
+			'label' => 'LLL:EXT:nxshowroom/Resources/Private/Language/locallang_db.xml:tx_nxshowroom_domain_model_attachment.description',
 			'config' => array(
 				'type' => 'text',
 				'cols' => 40,
@@ -114,11 +123,11 @@ $TCA['tx_nxshowroom_domain_model_type'] = array(
 		),
 		'resource' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:nxshowroom/Resources/Private/Language/locallang_db.xml:tx_nxshowroom_domain_model_type.resource',
+			'label' => 'LLL:EXT:nxshowroom/Resources/Private/Language/locallang_db.xml:tx_nxshowroom_domain_model_attachment.resource',
 			'config' => array(
 				'type' => 'inline',
 				'foreign_table' => 'tx_nxshowroom_domain_model_resource',
-				'foreign_field' => 'type',
+				'foreign_field' => 'attachment',
 				'maxitems'      => 9999,
 				'appearance' => array(
 					'collapse' => 0,
@@ -127,6 +136,11 @@ $TCA['tx_nxshowroom_domain_model_type'] = array(
 					'showPossibleLocalizationRecords' => 1,
 					'showAllLocalizationLink' => 1
 				),
+			),
+		),
+		'resource' => array(
+			'config' => array(
+				'type' => 'passthrough',
 			),
 		),
 	),

@@ -32,58 +32,36 @@
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class Tx_Nxshowroom_Domain_Model_Resource extends Tx_Extbase_DomainObject_AbstractEntity {
+class Tx_Nxshowroom_Domain_Model_Attachment extends Tx_Extbase_DomainObject_AbstractEntity {
 
 	/**
-	 * Project Title
+	 * Link
 	 *
 	 * @var string
 	 * @validate NotEmpty
+	 */
+	protected $link;
+
+	/**
+	 * Title
+	 *
+	 * @var string
 	 */
 	protected $title;
 
 	/**
-	 * Description
+	 * Description / Code
 	 *
 	 * @var string
-	 * @validate NotEmpty
 	 */
 	protected $description;
 
 	/**
-	 * Images
-	 *
-	 * @var string
-	 */
-	protected $images;
-
-	/**
-	 * Attachments
-	 *
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Nxshowroom_Domain_Model_Attachment>
-	 */
-	protected $attachment;
-
-	/**
-	 * Resource Relation
+	 * Resource
 	 *
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Nxshowroom_Domain_Model_Resource>
 	 */
 	protected $resource;
-
-	/**
-	 * Type
-	 *
-	 * @var Tx_Nxshowroom_Domain_Model_Type
-	 */
-	protected $type;
-
-	/**
-	 * Tags
-	 *
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Nxshowroom_Domain_Model_Tags>
-	 */
-	protected $tags;
 
 	/**
 	 * __construct
@@ -106,11 +84,26 @@ class Tx_Nxshowroom_Domain_Model_Resource extends Tx_Extbase_DomainObject_Abstra
 		 * It will be rewritten on each save in the extension builder
 		 * You may modify the constructor of this class instead
 		 */
-		$this->attachment = new Tx_Extbase_Persistence_ObjectStorage();
-		
 		$this->resource = new Tx_Extbase_Persistence_ObjectStorage();
-		
-		$this->tags = new Tx_Extbase_Persistence_ObjectStorage();
+	}
+
+	/**
+	 * Returns the link
+	 *
+	 * @return string $link
+	 */
+	public function getLink() {
+		return $this->link;
+	}
+
+	/**
+	 * Sets the link
+	 *
+	 * @param string $link
+	 * @return void
+	 */
+	public function setLink($link) {
+		$this->link = $link;
 	}
 
 	/**
@@ -152,64 +145,6 @@ class Tx_Nxshowroom_Domain_Model_Resource extends Tx_Extbase_DomainObject_Abstra
 	}
 
 	/**
-	 * Returns the images
-	 *
-	 * @return string $images
-	 */
-	public function getImages() {
-		return $this->images;
-	}
-
-	/**
-	 * Sets the images
-	 *
-	 * @param string $images
-	 * @return void
-	 */
-	public function setImages($images) {
-		$this->images = $images;
-	}
-
-	/**
-	 * Adds a Attachment
-	 *
-	 * @param Tx_Nxshowroom_Domain_Model_Attachment $attachment
-	 * @return void
-	 */
-	public function addAttachment(Tx_Nxshowroom_Domain_Model_Attachment $attachment) {
-		$this->attachment->attach($attachment);
-	}
-
-	/**
-	 * Removes a Attachment
-	 *
-	 * @param Tx_Nxshowroom_Domain_Model_Attachment $attachmentToRemove The Attachment to be removed
-	 * @return void
-	 */
-	public function removeAttachment(Tx_Nxshowroom_Domain_Model_Attachment $attachmentToRemove) {
-		$this->attachment->detach($attachmentToRemove);
-	}
-
-	/**
-	 * Returns the attachment
-	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_Nxshowroom_Domain_Model_Attachment> $attachment
-	 */
-	public function getAttachment() {
-		return $this->attachment;
-	}
-
-	/**
-	 * Sets the attachment
-	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_Nxshowroom_Domain_Model_Attachment> $attachment
-	 * @return void
-	 */
-	public function setAttachment(Tx_Extbase_Persistence_ObjectStorage $attachment) {
-		$this->attachment = $attachment;
-	}
-
-	/**
 	 * Adds a Resource
 	 *
 	 * @param Tx_Nxshowroom_Domain_Model_Resource $resource
@@ -246,64 +181,6 @@ class Tx_Nxshowroom_Domain_Model_Resource extends Tx_Extbase_DomainObject_Abstra
 	 */
 	public function setResource(Tx_Extbase_Persistence_ObjectStorage $resource) {
 		$this->resource = $resource;
-	}
-
-	/**
-	 * Returns the type
-	 *
-	 * @return Tx_Nxshowroom_Domain_Model_Type $type
-	 */
-	public function getType() {
-		return $this->type;
-	}
-
-	/**
-	 * Sets the type
-	 *
-	 * @param Tx_Nxshowroom_Domain_Model_Type $type
-	 * @return void
-	 */
-	public function setType(Tx_Nxshowroom_Domain_Model_Type $type) {
-		$this->type = $type;
-	}
-
-	/**
-	 * Adds a Tags
-	 *
-	 * @param Tx_Nxshowroom_Domain_Model_Tags $tag
-	 * @return void
-	 */
-	public function addTag(Tx_Nxshowroom_Domain_Model_Tags $tag) {
-		$this->tags->attach($tag);
-	}
-
-	/**
-	 * Removes a Tags
-	 *
-	 * @param Tx_Nxshowroom_Domain_Model_Tags $tagToRemove The Tags to be removed
-	 * @return void
-	 */
-	public function removeTag(Tx_Nxshowroom_Domain_Model_Tags $tagToRemove) {
-		$this->tags->detach($tagToRemove);
-	}
-
-	/**
-	 * Returns the tags
-	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_Nxshowroom_Domain_Model_Tags> $tags
-	 */
-	public function getTags() {
-		return $this->tags;
-	}
-
-	/**
-	 * Sets the tags
-	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_Nxshowroom_Domain_Model_Tags> $tags
-	 * @return void
-	 */
-	public function setTags(Tx_Extbase_Persistence_ObjectStorage $tags) {
-		$this->tags = $tags;
 	}
 
 }

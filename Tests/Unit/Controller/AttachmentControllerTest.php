@@ -4,14 +4,14 @@
  *  Copyright notice
  *
  *  (c) 2012 Noel Bossart <noel.bossart@me.com>, Namics AG
- *  Beat Gebistorf <beat.gebistorf@namics.com>, Namics AG
- *  
+ *  			Beat Gebistorf <beat.gebistorf@namics.com>, Namics AG
+ *  			
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
  *  free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 3 of the License, or
+ *  the Free Software Foundation; either version 2 of the License, or
  *  (at your option) any later version.
  *
  *  The GNU General Public License can be found at
@@ -26,49 +26,37 @@
  ***************************************************************/
 
 /**
+ * Test case for class Tx_Nxshowroom_Controller_AttachmentController.
  *
- *
- * @package nxshowroom
+ * @version $Id$
+ * @copyright Copyright belongs to the respective authors
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
+ * @package TYPO3
+ * @subpackage Showroom
+ *
+ * @author Noel Bossart <noel.bossart@me.com>
+ * @author Beat Gebistorf <beat.gebistorf@namics.com>
  */
-class Tx_Nxshowroom_Controller_TypeController extends Tx_Extbase_MVC_Controller_ActionController {
-
+class Tx_Nxshowroom_Controller_AttachmentControllerTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
 	/**
-	 * typeRepository
-	 *
-	 * @var Tx_Nxshowroom_Domain_Repository_TypeRepository
+	 * @var Tx_Nxshowroom_Domain_Model_Attachment
 	 */
-	protected $typeRepository;
+	protected $fixture;
 
-	/**
-	 * injectTypeRepository
-	 *
-	 * @param Tx_Nxshowroom_Domain_Repository_TypeRepository $typeRepository
-	 * @return void
-	 */
-	public function injectTypeRepository(Tx_Nxshowroom_Domain_Repository_TypeRepository $typeRepository) {
-		$this->typeRepository = $typeRepository;
+	public function setUp() {
+		$this->fixture = new Tx_Nxshowroom_Domain_Model_Attachment();
+	}
+
+	public function tearDown() {
+		unset($this->fixture);
 	}
 
 	/**
-	 * action list
-	 *
-	 * @return void
+	 * @test
 	 */
-	public function listAction() {
-		$types = $this->typeRepository->findAll();
-		$this->view->assign('types', $types);
-	}
-
-	/**
-	 * action show
-	 *
-	 * @param $type
-	 * @return void
-	 */
-	public function showAction(Tx_Nxshowroom_Domain_Model_Type $type) {
-		$this->view->assign('type', $type);
+	public function dummyMethod() {
+		$this->markTestIncomplete();
 	}
 
 }

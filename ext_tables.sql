@@ -6,14 +6,15 @@ CREATE TABLE tx_nxshowroom_domain_model_resource (
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
 
-	image int(11) unsigned DEFAULT '0' NOT NULL,
+	attachment int(11) unsigned DEFAULT '0' NOT NULL,
 	type int(11) unsigned DEFAULT '0' NOT NULL,
 
 	title varchar(255) DEFAULT '' NOT NULL,
 	description text NOT NULL,
-	images int(11) unsigned DEFAULT '0' NOT NULL,
+	images text NOT NULL,
+	attachment int(11) unsigned DEFAULT '0' NOT NULL,
 	resource int(11) unsigned DEFAULT '0' NOT NULL,
-	res_type int(11) unsigned DEFAULT '0',
+	type int(11) unsigned DEFAULT '0',
 	tags int(11) unsigned DEFAULT '0' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
@@ -47,16 +48,16 @@ CREATE TABLE tx_nxshowroom_domain_model_resource (
 );
 
 #
-# Table structure for table 'tx_nxshowroom_domain_model_image'
+# Table structure for table 'tx_nxshowroom_domain_model_attachment'
 #
-CREATE TABLE tx_nxshowroom_domain_model_image (
+CREATE TABLE tx_nxshowroom_domain_model_attachment (
 
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
 
 	resource int(11) unsigned DEFAULT '0' NOT NULL,
 
-	image text NOT NULL,
+	link varchar(255) DEFAULT '' NOT NULL,
 	title varchar(255) DEFAULT '' NOT NULL,
 	description text NOT NULL,
 	resource int(11) unsigned DEFAULT '0' NOT NULL,
@@ -175,9 +176,9 @@ CREATE TABLE tx_nxshowroom_domain_model_tags (
 );
 
 #
-# Table structure for table 'tx_nxshowroom_domain_model_image'
+# Table structure for table 'tx_nxshowroom_domain_model_attachment'
 #
-CREATE TABLE tx_nxshowroom_domain_model_image (
+CREATE TABLE tx_nxshowroom_domain_model_attachment (
 
 	resource  int(11) unsigned DEFAULT '0' NOT NULL,
 
@@ -214,7 +215,7 @@ CREATE TABLE tx_nxshowroom_resource_tags_mm (
 #
 CREATE TABLE tx_nxshowroom_domain_model_resource (
 
-	image  int(11) unsigned DEFAULT '0' NOT NULL,
+	attachment  int(11) unsigned DEFAULT '0' NOT NULL,
 
 );
 
