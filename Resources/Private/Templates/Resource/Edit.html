@@ -21,21 +21,21 @@ Otherwise your changes will be overwritten the next time you save the extension 
 	<f:form method="post" action="update" name="resource" object="{resource}" >
 		<f:render partial="Resource/FormFields" arguments="{resource:resource}" />
 
-			<div class="btn-group form-actions">
-		<f:link.action action="list"  class="btn  btn-large">
-			Cancel
-		</f:link.action>
-		<button class="btn btn-success btn-large">
-			<i class="icon-ok icon-white"></i> Save
-		</button>
-</div>
+		<div class="btn-group form-actions">
+			<f:link.action action="list"  class="btn  btn-large">
+				Cancel
+			</f:link.action>
+			<button class="btn btn-success btn-large">
+				<i class="icon-ok icon-white"></i> Save
+			</button>
+		</div>
 
 		<section>
-		Or, if you really think it's a good idea, just
-		<f:link.action action="delete" arguments="{resource : resource}"  class="btn btn-danger btn-mini">
-			<i class="icon-trash icon-white"></i>
-			delete it!
-		</f:link.action>
+			Or, if you really think it's a good idea, just
+			<f:link.action action="delete" arguments="{resource : resource}"  class="btn btn-danger btn-mini">
+				<i class="icon-trash icon-white"></i>
+				delete it!
+			</f:link.action>
 		</section>
 	</f:form>
 </f:section>

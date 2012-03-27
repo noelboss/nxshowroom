@@ -1,26 +1,32 @@
-<table class="tx-nxshowroom" >
-	<tr>
-		<td>
-			<f:translate key="tx_nxshowroom_domain_model_resource.title" />
-		</td>
-		<td>
-			{resource.title}
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<f:translate key="tx_nxshowroom_domain_model_resource.description" />
-		</td>
-		<td>
-			{resource.description}
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<f:translate key="tx_nxshowroom_domain_model_resource.images" />
-		</td>
-		<td>
-			{resource.images}
-		</td>
-	</tr>
-</table>
+
+<div class="row">
+	<div class="span4">
+		<div id="slideshow{resource.uid}" class="carousel">
+
+				<f:if condition="{f:count(subject:{resource.images})} > 1">
+					<div class="carousel-inner">
+				</f:if>
+
+				<f:for each="{resource.images}" as="image" key="test">
+					<f:if condition="{image}">
+						<div class="item <f:if condition="{test} < 1">active</f:if>">
+							<f:image src="{UPLOAD_FOLDER}/{image}" alt="Test" width="370c" height="250c" class="pull-left"/>
+						</div>
+					</f:if>
+				</f:for>
+				<f:if condition="{f:count(subject:{resource.images})} > 1">
+					<a class="carousel-control left" href="#slideshow{resource.uid}" data-slide="prev">&lsaquo;</a>
+					<a class="carousel-control right" href="#slideshow{resource.uid}" data-slide="next">&rsaquo;</a>
+				</div>
+				</f:if>
+		</div>
+	</div>
+	<div class="span8">
+		<h1>{resource.title}</h1>
+		<f:format.raw>
+			<f:format.nl2br>
+				{resource.description}
+			</f:format.nl2br>
+		</f:format.raw>
+	</div>
+</div>

@@ -19,47 +19,41 @@ Otherwise your changes will be overwritten the next time you save the extension 
 		<f:for each="{types}" as="type"  iteration="test">
 			<f:if condition="{test.cycle} % 4">
 				<f:else>
-					</div><div class='row'>
-				</f:else>
-			</f:if>
-			<div class="span4">
-
-				<h2>{type.title}s <f:link.action action="new" arguments="{type: type}" class="btn btn-primary pull-right">
+				</div><div class='row'>
+		</f:else>
+	</f:if>
+	<div class="span4">
+		<div class="thumbnail well">
+			<h2>{type.title}s <f:link.action action="new" arguments="{type: type}" class="btn btn-primary btn-mini pull-right">
 					<i class="icon-plus icon-white"></i>
 					{type.title}</f:link.action></h2>
-				<f:if condition="<f:count subject='{type.resource}' /> > 0">
-					<f:for each="{resources}" as="resource">
+			<f:if condition="<f:count subject='{type.resource}' /> > 0">
+				<f:for each="{resources}" as="resource">
 
-						<f:if condition="{type.title} == {resource.type.title}">
-							<div class="thumbnail well">
-								<h3><f:link.action action="show" arguments="{resource : resource}"> {resource.title}</f:link.action>
-									<f:link.action action="edit" arguments="{resource : resource}"  class="btn btn-mini pull-right">
-										<i class="icon-pencil"></i>
-										Edit</f:link.action></h3>
-								<p>
-									{resource.description}
-								</p>
-
-								<f:for each="{resource.images}" as="image">
-									<f:if condition="{image}">
-										<f:image src="{UPLOAD_FOLDER}/{image}" alt="Test" width="50c" height="50c"/>
-
-									</f:if>
-								</f:for>
-
+					<f:if condition="{type.title} == {resource.type.title}">
+						<div class="clearfix row-fluid">
+							<div class="span2">
+								<f:if condition="{resource.images.0}">
+								<f:image src="{UPLOAD_FOLDER}/{resource.images.0}" alt="Test" width="50c" height="50c" />
+							</f:if>
 							</div>
-
-						</f:if>
-					</f:for>
-				</f:if>
-			</div>
-		</f:for>
+							<div class="span8">
+								<h3><f:link.action action="show" arguments="{resource : resource}"> {resource.title}</f:link.action></h3>
+								<f:format.crop maxCharacters="150" append="&nbsp;…">{resource.description}</f:format.crop>
+							</div>
+						</div>
+					</f:if>
+				</f:for>
+			</f:if>
+		</div>
 	</div>
-	<section>
-		<f:link.action action="new" controller="Type"  class="btn btn-primary pull-right">
-					<i class="icon-plus icon-white"></i>
-					New Type
-		</f:link.action>
-	</section>
+</f:for>
+</div>
+<section>
+	<f:link.action action="new" controller="Type"  class="btn btn-primary pull-right">
+		<i class="icon-plus icon-white"></i>
+		New Type
+	</f:link.action>
+</section>
 
 </f:section>

@@ -88,6 +88,7 @@ class Tx_Nxshowroom_Controller_ResourceController extends Tx_Extbase_MVC_Control
 	 * @return void
 	 */
 	public function showAction(Tx_Nxshowroom_Domain_Model_Resource $resource) {
+		$this->view->assign('UPLOAD_FOLDER', Tx_Nxshowroom_Utility_Base::$UPLOAD_FOLDER);
 		$this->view->assign('resource', $resource);
 	}
 
