@@ -47,19 +47,20 @@ overwriteSettings:
       Model: merge
       Repository: merge
 
-  Configuration:
-    TCA:
-				Attachment.php merge
-        Resource.php merge
-        Tags.php merge
-        Type.php merge
+  Configuration: keep
+   # TCA:
+		#		Attachment.php keep
+    #    Resource.php keep
+    #    Tags.php keep
+    #    Type.php keep
     #TypoScript: merge
 
-  Resources:
-    Private:
-      Language:
+  Resources: keep
+    #Private:
+    #  Language:
         #locallang.xml: merge
-      #Templates: keep
+    #  Templates:
+		#		List.html: keep
 
   ext_icon.gif: keep
 

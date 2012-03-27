@@ -121,8 +121,11 @@ $TCA['tx_nxshowroom_domain_model_resource'] = array(
 				'uploadfolder' => 'uploads/tx_nxshowroom',
 				'show_thumbs' => 1,
 				'size' => 5,
+				'maxitems' => '5',
+				'minitems' => '0',
 				'allowed' => $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'],
 				'disallowed' => '',
+				'disable_controls' => 'upload',
 			),
 		),
 		'attachment' => array(

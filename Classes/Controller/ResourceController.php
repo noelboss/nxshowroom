@@ -5,7 +5,7 @@
  *
  *  (c) 2012 Noel Bossart <noel.bossart@me.com>, Namics AG
  *  Beat Gebistorf <beat.gebistorf@namics.com>, Namics AG
- *  
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -42,6 +42,13 @@ class Tx_Nxshowroom_Controller_ResourceController extends Tx_Extbase_MVC_Control
 	protected $resourceRepository;
 
 	/**
+	 * typeRepository
+	 *
+	 * @var Tx_Nxshowroom_Domain_Repository_TypeRepository
+	 */
+	protected $typeRepository;
+
+	/**
 	 * injectResourceRepository
 	 *
 	 * @param Tx_Nxshowroom_Domain_Repository_ResourceRepository $resourceRepository
@@ -52,13 +59,26 @@ class Tx_Nxshowroom_Controller_ResourceController extends Tx_Extbase_MVC_Control
 	}
 
 	/**
+	 * injectTypeRepository
+	 *
+	 * @param Tx_Nxshowroom_Domain_Repository_TypeRepository $typeRepository
+	 * @return void
+	 */
+	public function injectTypeRepository(Tx_Nxshowroom_Domain_Repository_TypeRepository $typeRepository) {
+		$this->typeRepository = $typeRepository;
+	}
+
+	/**
 	 * action list
 	 *
 	 * @return void
 	 */
 	public function listAction() {
 		$resources = $this->resourceRepository->findAll();
+		$types = $this->typeRepository->findAll();
+		$this->view->assign('UPLOAD_FOLDER', Tx_Nxshowroom_Utility_Base::$UPLOAD_FOLDER);
 		$this->view->assign('resources', $resources);
+		$this->view->assign('types', $types);
 	}
 
 	/**
@@ -74,11 +94,13 @@ class Tx_Nxshowroom_Controller_ResourceController extends Tx_Extbase_MVC_Control
 	/**
 	 * action new
 	 *
+	 * @param $type
 	 * @param $newResource
 	 * @dontvalidate $newResource
 	 * @return void
 	 */
-	public function newAction(Tx_Nxshowroom_Domain_Model_Resource $newResource = NULL) {
+	public function newAction(Tx_Nxshowroom_Domain_Model_Type $type, Tx_Nxshowroom_Domain_Model_Resource $newResource = NULL) {
+		$this->view->assign('type', $type);
 		$this->view->assign('newResource', $newResource);
 	}
 
@@ -86,10 +108,13 @@ class Tx_Nxshowroom_Controller_ResourceController extends Tx_Extbase_MVC_Control
 	 * action create
 	 *
 	 * @param $newResource
+	 * @param $type
 	 * @return void
 	 */
-	public function createAction(Tx_Nxshowroom_Domain_Model_Resource $newResource) {
+	public function createAction(Tx_Nxshowroom_Domain_Model_Resource $newResource, Tx_Nxshowroom_Domain_Model_Type $type) {
+		$newResource->setType($type);
 		$this->resourceRepository->add($newResource);
+
 		$this->flashMessageContainer->add('Your new Resource was created.');
 		$this->redirect('list');
 	}

@@ -32,7 +32,7 @@
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class Tx_Nxshowroom_Domain_Model_Type extends Tx_Extbase_DomainObject_AbstractValueObject {
+class Tx_Nxshowroom_Domain_Model_Type extends Tx_Extbase_DomainObject_AbstractEntity {
 
 	/**
 	 * Title

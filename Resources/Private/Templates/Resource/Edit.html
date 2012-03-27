@@ -4,22 +4,38 @@ This template displays a EDIT form for the current domain object.
 
 If you modify this template, do not forget to change the overwrite settings
 in /Configuration/ExtensionBuilder/settings.yaml:
-  Resources:
-    Private:
-      Templates:
-        Edit.html: keep
+Resources:
+Private:
+Templates:
+Edit.html: keep
 
 Otherwise your changes will be overwritten the next time you save the extension in the extension builder
 
 <f:section name="main">
-<h1>Edit Resource</h1>
+	<h1>Edit Resource</h1>
 
-<f:flashMessages />
+	<f:flashMessages />
 
-<f:render partial="FormErrors" />
+	<f:render partial="FormErrors" />
 
-<f:form method="post" action="update" name="resource" object="{resource}" >
-<f:render partial="Resource/FormFields" arguments="{resource:resource}" />
-	<f:form.submit value="Save" />
-</f:form>
+	<f:form method="post" action="update" name="resource" object="{resource}" >
+		<f:render partial="Resource/FormFields" arguments="{resource:resource}" />
+
+			<div class="btn-group form-actions">
+		<f:link.action action="list"  class="btn  btn-large">
+			Cancel
+		</f:link.action>
+		<button class="btn btn-success btn-large">
+			<i class="icon-ok icon-white"></i> Save
+		</button>
+</div>
+
+		<section>
+		Or, if you really think it's a good idea, just
+		<f:link.action action="delete" arguments="{resource : resource}"  class="btn btn-danger btn-mini">
+			<i class="icon-trash icon-white"></i>
+			delete it!
+		</f:link.action>
+		</section>
+	</f:form>
 </f:section>

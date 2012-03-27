@@ -1,40 +1,65 @@
+{namespace fed=Tx_Fed_ViewHelpers}
 <f:layout name="Default" />
 
 This Template is responsible for creating a table of domain objects.
 
 If you modify this template, do not forget to change the overwrite settings
 in /Configuration/ExtensionBuilder/settings.yaml:
-  Resources:
-    Private:
-      Templates:
-        List.html: keep
+Resources:
+Private:
+Templates:
+List.html: keep
 
 Otherwise your changes will be overwritten the next time you save the extension in the extension builder
 
 <f:section name="main">
-<h1>Listing for Resource</h1>
+	<f:flashMessages />
+	<div class="row">
 
-<f:flashMessages />
+		<f:for each="{types}" as="type"  iteration="test">
+			<f:if condition="{test.cycle} % 4">
+				<f:else>
+					</div><div class='row'>
+				</f:else>
+			</f:if>
+			<div class="span4">
 
-<table  class="tx_nxshowroom" >
-	<tr>
-		<th><f:translate key="tx_nxshowroom_domain_model_resource.title" /></th>
-		<th><f:translate key="tx_nxshowroom_domain_model_resource.description" /></th>
-		<th><f:translate key="tx_nxshowroom_domain_model_resource.images" /></th>
-		<th> </th>
-		<th> </th>
-	</tr>
+				<h2>{type.title}s <f:link.action action="new" arguments="{type: type}" class="btn btn-primary pull-right">
+					<i class="icon-plus icon-white"></i>
+					{type.title}</f:link.action></h2>
+				<f:if condition="<f:count subject='{type.resource}' /> > 0">
+					<f:for each="{resources}" as="resource">
 
-	<f:for each="{resources}" as="resource">
-		<tr>
-			<td><f:link.action action="show" arguments="{resource : resource}"> {resource.title}</f:link.action></td>
-			<td><f:link.action action="show" arguments="{resource : resource}"> {resource.description}</f:link.action></td>
-			<td><f:link.action action="show" arguments="{resource : resource}"> {resource.images}</f:link.action></td>
-			<td><f:link.action action="edit" arguments="{resource : resource}">Edit</f:link.action></td>
-			<td><f:link.action action="delete" arguments="{resource : resource}">Delete</f:link.action></td>
-		</tr>
-	</f:for>
-</table>
+						<f:if condition="{type.title} == {resource.type.title}">
+							<div class="thumbnail well">
+								<h3><f:link.action action="show" arguments="{resource : resource}"> {resource.title}</f:link.action>
+									<f:link.action action="edit" arguments="{resource : resource}"  class="btn btn-mini pull-right">
+										<i class="icon-pencil"></i>
+										Edit</f:link.action></h3>
+								<p>
+									{resource.description}
+								</p>
 
-<f:link.action action="new">New Resource</f:link.action>
+								<f:for each="{resource.images}" as="image">
+									<f:if condition="{image}">
+										<f:image src="{UPLOAD_FOLDER}/{image}" alt="Test" width="50c" height="50c"/>
+
+									</f:if>
+								</f:for>
+
+							</div>
+
+						</f:if>
+					</f:for>
+				</f:if>
+			</div>
+		</f:for>
+	</div>
+	<section>
+		<f:link.action action="new" controller="Type"  class="btn btn-primary pull-right">
+					<i class="icon-plus icon-white"></i>
+					New Type
+		</f:link.action>
+	</section>
+
 </f:section>

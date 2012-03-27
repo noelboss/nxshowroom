@@ -35,6 +35,23 @@
 class Tx_Nxshowroom_Controller_TagsController extends Tx_Extbase_MVC_Controller_ActionController {
 
 	/**
+	 * tagsRepository
+	 *
+	 * @var Tx_Nxshowroom_Domain_Repository_TagsRepository
+	 */
+	protected $tagsRepository;
+
+	/**
+	 * injectTagsRepository
+	 *
+	 * @param Tx_Nxshowroom_Domain_Repository_TagsRepository $tagsRepository
+	 * @return void
+	 */
+	public function injectTagsRepository(Tx_Nxshowroom_Domain_Repository_TagsRepository $tagsRepository) {
+		$this->tagsRepository = $tagsRepository;
+	}
+
+	/**
 	 * action list
 	 *
 	 * @return void

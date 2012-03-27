@@ -5,7 +5,7 @@
  *
  *  (c) 2012 Noel Bossart <noel.bossart@me.com>, Namics AG
  *  Beat Gebistorf <beat.gebistorf@namics.com>, Namics AG
- *  
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -107,9 +107,9 @@ class Tx_Nxshowroom_Domain_Model_Resource extends Tx_Extbase_DomainObject_Abstra
 		 * You may modify the constructor of this class instead
 		 */
 		$this->attachment = new Tx_Extbase_Persistence_ObjectStorage();
-		
+
 		$this->resource = new Tx_Extbase_Persistence_ObjectStorage();
-		
+
 		$this->tags = new Tx_Extbase_Persistence_ObjectStorage();
 	}
 
@@ -157,7 +157,7 @@ class Tx_Nxshowroom_Domain_Model_Resource extends Tx_Extbase_DomainObject_Abstra
 	 * @return string $images
 	 */
 	public function getImages() {
-		return $this->images;
+		return explode(',',$this->images);
 	}
 
 	/**
