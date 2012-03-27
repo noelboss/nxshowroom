@@ -71,5 +71,50 @@ class Tx_Nxshowroom_Controller_TypeController extends Tx_Extbase_MVC_Controller_
 		$this->view->assign('type', $type);
 	}
 
+	/**
+	 * action new
+	 *
+	 * @param $newType
+	 * @dontvalidate $newType
+	 * @return void
+	 */
+	public function newAction(Tx_Nxshowroom_Domain_Model_Type $newType = NULL) {
+		$this->view->assign('newType', $newType);
+	}
+
+	/**
+	 * action create
+	 *
+	 * @param $newType
+	 * @return void
+	 */
+	public function createAction(Tx_Nxshowroom_Domain_Model_Type $newType) {
+		$this->typeRepository->add($newType);
+		$this->flashMessageContainer->add('Your new Type was created.');
+		$this->redirect('list');
+	}
+
+	/**
+	 * action edit
+	 *
+	 * @param $type
+	 * @return void
+	 */
+	public function editAction(Tx_Nxshowroom_Domain_Model_Type $type) {
+		$this->view->assign('type', $type);
+	}
+
+	/**
+	 * action update
+	 *
+	 * @param $type
+	 * @return void
+	 */
+	public function updateAction(Tx_Nxshowroom_Domain_Model_Type $type) {
+		$this->typeRepository->update($type);
+		$this->flashMessageContainer->add('Your Type was updated.');
+		$this->redirect('list');
+	}
+
 }
 ?>
