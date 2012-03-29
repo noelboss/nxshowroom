@@ -5,7 +5,7 @@
  *
  *  (c) 2012 Noel Bossart <noel.bossart@me.com>, Namics AG
  *  Beat Gebistorf <beat.gebistorf@namics.com>, Namics AG
- *  
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -35,17 +35,18 @@
 class Tx_Nxshowroom_Domain_Model_Attachment extends Tx_Extbase_DomainObject_AbstractEntity {
 
 	/**
-	 * Link
+	 * Code
 	 *
 	 * @var string
 	 * @validate NotEmpty
 	 */
-	protected $link;
+	protected $code;
 
 	/**
 	 * Title
 	 *
 	 * @var string
+ 	 * @validate NotEmpty
 	 */
 	protected $title;
 
@@ -88,22 +89,22 @@ class Tx_Nxshowroom_Domain_Model_Attachment extends Tx_Extbase_DomainObject_Abst
 	}
 
 	/**
-	 * Returns the link
+	 * Returns the code
 	 *
-	 * @return string $link
+	 * @return string $code
 	 */
-	public function getLink() {
-		return $this->link;
+	public function getCode() {
+		return $this->code;
 	}
 
 	/**
-	 * Sets the link
+	 * Sets the code
 	 *
-	 * @param string $link
+	 * @param string $code
 	 * @return void
 	 */
-	public function setLink($link) {
-		$this->link = $link;
+	public function setCode($code) {
+		$this->code = $code;
 	}
 
 	/**

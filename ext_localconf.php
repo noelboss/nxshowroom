@@ -8,10 +8,10 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	'Showroom',
 	array(
 		'Resource' => 'list, show, new, create, edit, update, delete',
-		'Attachment' => 'new, create, edit, update, delete',
+		'Attachment' => 'show, new, create, edit, update, delete',
 		'Type' => 'list, show, new, create, edit, update',
 		'Tags' => 'list, new, create, edit, update, delete',
-		
+
 	),
 	// non-cacheable actions
 	array(
@@ -19,7 +19,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 		'Attachment' => 'create, update, delete',
 		'Type' => 'create, update',
 		'Tags' => 'create, update, delete',
-		
+
 	)
 );
 

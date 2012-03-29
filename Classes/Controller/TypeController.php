@@ -5,7 +5,7 @@
  *
  *  (c) 2012 Noel Bossart <noel.bossart@me.com>, Namics AG
  *  Beat Gebistorf <beat.gebistorf@namics.com>, Namics AG
- *  
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -90,8 +90,8 @@ class Tx_Nxshowroom_Controller_TypeController extends Tx_Extbase_MVC_Controller_
 	 */
 	public function createAction(Tx_Nxshowroom_Domain_Model_Type $newType) {
 		$this->typeRepository->add($newType);
-		$this->flashMessageContainer->add('Your new Type was created.');
-		$this->redirect('list');
+		$this->flashMessageContainer->add('<h4 class="alert-heading">Okay!</h4> Your new Type was created.');
+		$this->redirect('list', 'Resource');
 	}
 
 	/**
@@ -112,8 +112,8 @@ class Tx_Nxshowroom_Controller_TypeController extends Tx_Extbase_MVC_Controller_
 	 */
 	public function updateAction(Tx_Nxshowroom_Domain_Model_Type $type) {
 		$this->typeRepository->update($type);
-		$this->flashMessageContainer->add('Your Type was updated.');
-		$this->redirect('list');
+		$this->flashMessageContainer->add('<h4 class="alert-heading">Okay!</h4> Your Type was updated.');
+		$this->redirect('list', 'Resource');
 	}
 
 }

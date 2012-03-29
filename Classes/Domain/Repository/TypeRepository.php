@@ -5,7 +5,7 @@
  *
  *  (c) 2012 Noel Bossart <noel.bossart@me.com>, Namics AG
  *  Beat Gebistorf <beat.gebistorf@namics.com>, Namics AG
- *  
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -33,6 +33,38 @@
  *
  */
 class Tx_Nxshowroom_Domain_Repository_TypeRepository extends Tx_Extbase_Persistence_Repository {
+
+	public function findAll() {
+		$resourceRepository = t3lib_div::makeInstance('Tx_Nxshowroom_Domain_Repository_ResourceRepository');
+
+        $query = $this->createQuery();
+        $query->getQuerySettings()->setReturnRawQueryResult(false);
+
+        $query->setOrderings(array(
+			'title' => Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING,
+        ));
+
+        return $query->execute();
+    }
+
+
+	public function findByTag($tag = 0, $limit = 10) {
+		$resourceRepository = t3lib_div::makeInstance('Tx_Nxshowroom_Domain_Repository_ResourceRepository');
+
+        $query = $this->createQuery();
+        $query->getQuerySettings()->setReturnRawQueryResult(true);
+
+        $query->setOrderings(array(
+            'title' => Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING,
+        ));
+
+        $res = $query->execute();
+		foreach ($res as $key => $value) {
+				$res[$key]['resource'] = $resourceRepository->findByTagAndType($tag, $value['uid'], $value['uid']);
+		}
+		return $res;
+
+    }
 
 }
 ?>

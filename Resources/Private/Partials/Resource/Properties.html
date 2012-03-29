@@ -1,32 +1,95 @@
 
 <div class="row">
-	<div class="span4">
-		<div id="slideshow{resource.uid}" class="carousel">
 
-				<f:if condition="{f:count(subject:{resource.images})} > 1">
-					<div class="carousel-inner">
-				</f:if>
-
-				<f:for each="{resource.images}" as="image" key="test">
-					<f:if condition="{image}">
-						<div class="item <f:if condition="{test} < 1">active</f:if>">
-							<f:image src="{UPLOAD_FOLDER}/{image}" alt="Test" width="370c" height="250c" class="pull-left"/>
+		<f:if condition="{f:count(subject:'{resource.images}')} > 1">
+			<f:then>
+				<div class="span5 down">
+					<div class="slider-wrapper theme-default">
+						<div class="ribbon"></div>
+						<div id="slider" class="nivoSlider">
+							<f:for each="{resource.images}" as="image" key="number">
+								<f:if condition="{image}">
+									<f:image src="{UPLOAD_FOLDER}/{image}" alt="{resource.title}" width="470c" height="300c" />
+								</f:if>
+							</f:for>
 						</div>
-					</f:if>
-				</f:for>
-				<f:if condition="{f:count(subject:{resource.images})} > 1">
-					<a class="carousel-control left" href="#slideshow{resource.uid}" data-slide="prev">&lsaquo;</a>
-					<a class="carousel-control right" href="#slideshow{resource.uid}" data-slide="next">&rsaquo;</a>
+					</div>
 				</div>
-				</f:if>
-		</div>
-	</div>
-	<div class="span8">
-		<h1>{resource.title}</h1>
+				<div class="span7">
+			</f:then>
+			<f:else>
+				<div class="span12">
+			</f:else>
+		</f:if>
+
+		<h1 class="resTitle">{resource.title}</h1>
+		<p>
+			<f:for each="{resource.tags}" as="tag" iteration="tagIteration">
+				<f:link.action action="list" controller="Resource" arguments="{tag: tag}" class="badge badge-info">
+					{tag.title}
+				</f:link.action>&nbsp;
+			</f:for>
+		</p>
 		<f:format.raw>
 			<f:format.nl2br>
 				{resource.description}
 			</f:format.nl2br>
 		</f:format.raw>
+		<f:if condition="{resource.attachment}">
+		<f:if condition="{f:count(subject:'{resource.images}')} > 1">
+			<f:then>
+				<div>
+					<hr />
+					<h3>Attachments</h3>
+					<p>
+						<f:for each="{resource.attachment}" as="attachment">
+							<f:link.action action="show" controller="Attachment" arguments="{attachment: attachment, resource: resource}" class="btn">
+								<i class="icon-file"></i> {attachment.title}
+							</f:link.action>
+						</f:for>
+					</p>
+				</div>
+			</f:then>
+			<f:else>
+				<section>
+					<div class="tabbable">
+						<ul class="nav nav-tabs">
+							<f:for each="{resource.attachment}" as="attachment" iteration="attachmentNav">
+								<li class="<f:if condition="{attachmentNav.isFirst}">active</f:if>">
+									<a href="#{attachment.uid}" data-toggle="tab">{attachment.title}</a>
+								</li>
+							</f:for>
+						</ul>
+						<div class="tab-content">
+							<f:for each="{resource.attachment}" as="attachment"  iteration="attachmentNav2">
+								<div id="{attachment.uid}" class="tab-pane <f:if condition="{attachmentNav2.isFirst}">active</f:if>">
+									<f:format.raw>
+										<f:format.nl2br>
+											{attachment.description}
+										</f:format.nl2br>
+									</f:format.raw>
+									<br/><pre class="prettyprint linenums pre-scrollable">{attachment.code}</pre>
+									<f:link.action action="new" controller="Attachment" arguments="{newAttachment: 0, resource: resource}" class="btn btn-mini pull-right">
+										<i class="icon-plus"></i> Add Attachment
+									</f:link.action>
+									<f:link.action action="edit" controller="Attachment" arguments="{attachment: attachment, resource: resource}">
+											<i class="icon icon-pencil"></i> Edit Attachement
+									</f:link.action>
+								</div>
+							</f:for>
+						</div>
+					</div>
+				</section>
+			</f:else>
+		</f:if>
+		</f:if>
+		<section>
+			<f:link.action action="list"  class="btn">
+				<i class="icon-arrow-left"></i> Back
+			</f:link.action>
+			<f:link.action action="edit" arguments="{resource : resource}"  class="btn">
+				<i class="icon-pencil"></i> Edit Resource
+			</f:link.action>
+		</section>
 	</div>
 </div>

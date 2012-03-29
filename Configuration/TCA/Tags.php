@@ -108,7 +108,9 @@ $TCA['tx_nxshowroom_domain_model_tags'] = array(
 			'config' => array(
 				'type' => 'select',
 				'foreign_table' => 'tx_nxshowroom_domain_model_resource',
-				'MM' => 'tx_nxshowroom_tags_resource_mm',
+				'MM' => 'tx_nxshowroom_resource_tags_mm',
+				// manually added to create M:M relation
+				'MM_opposite_field' => 'tags',
 				'size' => 10,
 				'autoSizeMax' => 30,
 				'maxitems' => 9999,

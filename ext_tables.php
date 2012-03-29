@@ -43,7 +43,7 @@ t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'Showroom');
 			$TCA['tx_nxshowroom_domain_model_attachment'] = array(
 				'ctrl' => array(
 					'title'	=> 'LLL:EXT:nxshowroom/Resources/Private/Language/locallang_db.xml:tx_nxshowroom_domain_model_attachment',
-					'label' => 'link',
+					'label' => 'title',
 					'tstamp' => 'tstamp',
 					'crdate' => 'crdate',
 					'cruser_id' => 'cruser_id',

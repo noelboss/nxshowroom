@@ -57,7 +57,7 @@ CREATE TABLE tx_nxshowroom_domain_model_attachment (
 
 	resource int(11) unsigned DEFAULT '0' NOT NULL,
 
-	link varchar(255) DEFAULT '' NOT NULL,
+	code text NOT NULL,
 	title varchar(255) DEFAULT '' NOT NULL,
 	description text NOT NULL,
 	resource int(11) unsigned DEFAULT '0' NOT NULL,

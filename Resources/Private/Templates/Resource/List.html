@@ -10,69 +10,49 @@ Private:
 Templates:
 List.html: keep
 
-Otherwise your changes will be overwritten the next time you save the extension in the extension builder
-
 <f:section name="main">
-	<f:flashMessages />
-	<div class="row">
+	<f:flashMessages renderMode="div" class="alert alert-success"/>
 
-		<f:for each="{types}" as="type"  iteration="typeTest">
-			<f:if condition="{typeTest.cycle} % 4">
-				<f:else>
-				</div><div class='row'>
-		</f:else>
-	</f:if>
-	<div class="span4">
-		<div class="thumbnail well">
-			<h2>{type.title}s <f:link.action action="new" arguments="{type: type}" class="btn btn-primary btn-mini pull-right">
-					<i class="icon-plus icon-white"></i> add</f:link.action></h2>
-			<f:if condition="<f:count subject='{type.resource}' /> > 0">
-				<f:for each="{resources}" as="resource">
-
-					<f:if condition="{type.title} == {resource.type.title}">
-						<div class="clearfix row-fluid">
-							<div class="span4">
-
-							<f:if condition="{f:count(subject:{resource.images})} > 1">
-								<div id="slideshow{resource.uid}" class="carousel">
-								<div class="carousel-inner">
-							</f:if>
-
-							<f:for each="{resource.images}" as="image" key="imageTest">
-								<f:if condition="{image}">
-									<div class="item <f:if condition="{imageTest} < 1">active</f:if>">
-										<f:image src="{UPLOAD_FOLDER}/{image}" alt="Test" width="104c" height="60c" />
-									</div>
-								</f:if>
-							</f:for>
-							<f:if condition="{f:count(subject:{resource.images})} > 1">
-								<span style="display: none;">
-									<a class="carousel-control left" href="#slideshow{resource.uid}" data-slide="prev">&lsaquo;</a>
-								<a class="carousel-control right" href="#slideshow{resource.uid}" data-slide="next">&rsaquo;</a>
-								</span>
-
-								</div>
-								</div>
-							</f:if>
-
-							</div>
-							<div class="span8">
-								<h3><f:link.action action="show" arguments="{resource : resource}"> {resource.title}</f:link.action></h3>
-								<f:format.crop maxCharacters="60" append="&nbsp;…">{resource.description}</f:format.crop>
-							</div>
-						</div>
-					</f:if>
-				</f:for>
-			</f:if>
+	<f:if condition="{tag}">
+		<div class="alert alert-info">
+			<f:link.action action="list" class="close">
+				x
+			</f:link.action>
+			Fiktered by Tag: <strong>{tag.title}</strong>
 		</div>
-	</div>
-</f:for>
-</div>
-<section>
-	<f:link.action action="new" controller="Type"  class="btn pull-right">
-		<i class="icon-plus"></i>
-		New Type
-	</f:link.action>
-</section>
+	</f:if>
 
+	<div class="tabbable">
+				<f:link.action action="new" controller="Type"  class="btn btn-mini pull-right">
+					<i class="icon-plus"></i>
+					Type
+				</f:link.action>
+		<ul class="nav nav-tabs">
+			<f:for each="{types}" as="type" iteration="tabNav">
+				<li class="<f:if condition="{tabNav.isFirst}">active</f:if>"><a href="#{type.uid}" data-toggle="tab">{type.title}s</a></li>
+			</f:for>
+		</ul>
+
+	</div>
+	  <div class="tab-content">
+			<f:for each="{types}" as="type"  iteration="tabContent">
+				<div id="{type.uid}" class="tab-pane <f:if condition="{tabContent.isFirst}">active</f:if>">
+					<div class="well tab-well">
+						<f:render partial="Resource/ListItems" arguments="{type: type, UPLOAD_FOLDER:UPLOAD_FOLDER}" />
+					</div>
+					<div class="row">
+						<div class="span10">
+							<p>{type.description}</p>
+						</div>
+						<div class="span2">
+							<p>
+								<f:link.action action="new" arguments="{type: type}" class="btn btn-primary btn-mini pull-right">
+									<i class="icon-plus icon-white"></i> add {type.title}
+								</f:link.action>
+							</p>
+						</div>
+					</div>
+				</div>
+			</f:for>
+	</div>
 </f:section>

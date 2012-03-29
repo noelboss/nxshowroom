@@ -12,14 +12,23 @@ in /Configuration/ExtensionBuilder/settings.yaml:
 Otherwise your changes will be overwritten the next time you save the extension in the extension builder
 
 <f:section name="main">
-<h1>Edit Attachment</h1>
+	<f:flashMessages />
 
-<f:flashMessages />
+	<f:render partial="FormErrors" />
 
-<f:render partial="FormErrors" />
+	<f:form method="post" action="update" name="attachment" object="{attachment}" arguments="{resource:resource}">
+		<fieldset>
+			<legend>Edit {attachment.title}</legend>
+			<f:render partial="Attachment/FormFields" arguments="{resource:resource}" />
+		</fieldset>
 
-<f:form method="post" action="update" name="attachment" object="{attachment}" >
-<f:render partial="Attachment/FormFields" arguments="{attachment:attachment}" />
-	<f:form.submit value="Save" />
-</f:form>
+		<div class="btn-group">
+			<f:link.action action="show" controller="Resource" arguments="{resource:resource}" class="btn  btn-large">
+				<i class="icon-arrow-left"></i> Cancel
+			</f:link.action>
+			<button class="btn btn-success btn-large" type="submit">
+				<i class="icon-ok-circle icon-white"></i> Save Attachment
+			</button>
+		</div>
+	</f:form>
 </f:section>

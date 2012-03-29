@@ -69,15 +69,30 @@ class Tx_Nxshowroom_Controller_ResourceController extends Tx_Extbase_MVC_Control
 	}
 
 	/**
-	 * action list
+	 * injectTagsRepository
 	 *
+	 * @param Tx_Nxshowroom_Domain_Repository_TagsRepository $tagsRepository
 	 * @return void
 	 */
-	public function listAction() {
-		$resources = $this->resourceRepository->findAll();
-		$types = $this->typeRepository->findAll();
+	public function injectTagsRepository(Tx_Nxshowroom_Domain_Repository_TagsRepository $tagsRepository) {
+		$this->tagsRepository = $tagsRepository;
+	}
+
+	/**
+	 * action list
+	 *
+	 * @param Tx_Nxshowroom_Domain_Model_Tags $tag
+	 * @return void
+	 */
+	public function listAction(Tx_Nxshowroom_Domain_Model_Tags $tag = NULL) {
+		if($tag){
+			$types = $this->typeRepository->findByTag($tag->getUid(),5);
+			$this->view->assign('tag', $tag);
+		} else {
+			$types = $this->typeRepository->findAll();
+		}
+
 		$this->view->assign('UPLOAD_FOLDER', Tx_Nxshowroom_Utility_Base::$UPLOAD_FOLDER);
-		$this->view->assign('resources', $resources);
 		$this->view->assign('types', $types);
 	}
 
@@ -116,7 +131,7 @@ class Tx_Nxshowroom_Controller_ResourceController extends Tx_Extbase_MVC_Control
 		$newResource->setType($type);
 		$this->resourceRepository->add($newResource);
 
-		$this->flashMessageContainer->add('Your new Resource was created.');
+		$this->flashMessageContainer->add('<h4 class="alert-heading">Okay!</h4> Your new Resource was created.');
 		$this->redirect('list');
 	}
 
@@ -138,8 +153,8 @@ class Tx_Nxshowroom_Controller_ResourceController extends Tx_Extbase_MVC_Control
 	 */
 	public function updateAction(Tx_Nxshowroom_Domain_Model_Resource $resource) {
 		$this->resourceRepository->update($resource);
-		$this->flashMessageContainer->add('Your Resource was updated.');
-		$this->redirect('list');
+		$this->flashMessageContainer->add('<h4 class="alert-heading">Okay!</h4> Your Resource was updated.');
+		$this->redirect('show', NULL, NULL, array('resource' => $resource->getUid()));
 	}
 
 	/**
@@ -150,7 +165,7 @@ class Tx_Nxshowroom_Controller_ResourceController extends Tx_Extbase_MVC_Control
 	 */
 	public function deleteAction(Tx_Nxshowroom_Domain_Model_Resource $resource) {
 		$this->resourceRepository->remove($resource);
-		$this->flashMessageContainer->add('Your Resource was removed.');
+		$this->flashMessageContainer->add('<h4 class="alert-heading">Okay!</h4> Your Resource was removed.');
 		$this->redirect('list');
 	}
 

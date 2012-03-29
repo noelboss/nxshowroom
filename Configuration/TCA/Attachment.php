@@ -93,12 +93,13 @@ $TCA['tx_nxshowroom_domain_model_attachment'] = array(
 				),
 			),
 		),
-		'link' => array(
+		'code' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:nxshowroom/Resources/Private/Language/locallang_db.xml:tx_nxshowroom_domain_model_attachment.link',
+			'label' => 'LLL:EXT:nxshowroom/Resources/Private/Language/locallang_db.xml:tx_nxshowroom_domain_model_attachment.code',
 			'config' => array(
-				'type' => 'input',
-				'size' => 30,
+				'type' => 'text',
+				'cols' => 40,
+				'rows' => 15,
 				'eval' => 'trim,required'
 			),
 		),

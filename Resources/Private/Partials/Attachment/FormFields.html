@@ -1,12 +1,28 @@
-<label for="link">
-	<f:translate key="tx_nxshowroom_domain_model_attachment.link" /> <span class="required">(required)</span>
-</label><br />
-	<f:form.textfield property="link" /><br />
-<label for="title">
-	<f:translate key="tx_nxshowroom_domain_model_attachment.title" />
-</label><br />
-	<f:form.textfield property="title" /><br />
-<label for="description">
-	<f:translate key="tx_nxshowroom_domain_model_attachment.description" />
-</label><br />
-	<f:form.textarea property="description" cols="40" rows="15" /><br />
+<div class="control-group">
+	<label for="title"  class="control-label">
+		<f:translate key="tx_nxshowroom_domain_model_attachment.title" /> *
+	</label>
+	<div class="controls">
+		<f:form.textfield property="title"  class="input-xlarge" placeholder="Title" />
+		<p class="help-inline">(required)</p>
+	</div>
+</div>
+
+<div class="control-group">
+	<label for="description"  class="control-label">
+		<f:translate key="tx_nxshowroom_domain_model_attachment.description" /> *
+	</label>
+	<div class="controls">
+		<f:form.textarea property="description" class="richtext" cols="150" rows="5" />
+	</div>
+</div>
+
+<div class="control-group">
+	<label for="code"  class="control-label">
+		<f:translate key="tx_nxshowroom_domain_model_attachment.code" /> *
+	</label>
+	<div class="controls">
+		<f:form.textarea property="code"  class="wide" cols="150" rows="15"  />
+		<p class="help-inline">(required)</p>
+	</div>
+</div>

@@ -1,11 +1,11 @@
 <?php
 
-/***************************************************************
+/* * *************************************************************
  *  Copyright notice
  *
  *  (c) 2012 Noel Bossart <noel.bossart@me.com>, Namics AG
  *  Beat Gebistorf <beat.gebistorf@namics.com>, Namics AG
- *  
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -23,7 +23,7 @@
  *  GNU General Public License for more details.
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ * ************************************************************* */
 
 /**
  *
@@ -34,5 +34,65 @@
  */
 class Tx_Nxshowroom_Domain_Repository_ResourceRepository extends Tx_Extbase_Persistence_Repository {
 
+	public function findByTag($tag = 0, $limit = 10) {
+		if($tag < 1){
+			return;
+		}
+		$now = time();
+        $query = $this->createQuery();
+        $query->getQuerySettings()->setReturnRawQueryResult(false);
+        $queryText = '
+			SELECT tx_nxshowroom_domain_model_resource.*
+                FROM tx_nxshowroom_resource_tags_mm AS mm
+                LEFT JOIN tx_nxshowroom_domain_model_resource ON tx_nxshowroom_domain_model_resource.uid = mm.uid_local
+
+				WHERE mm.uid_foreign IN ('.$tag.')
+					AND tx_nxshowroom_domain_model_resource.deleted=0
+					AND tx_nxshowroom_domain_model_resource.t3ver_state<=0
+					AND tx_nxshowroom_domain_model_resource.pid<>-1
+					AND tx_nxshowroom_domain_model_resource.hidden=0
+					AND tx_nxshowroom_domain_model_resource.starttime<='.$now.'
+					AND (tx_nxshowroom_domain_model_resource.endtime=0 OR tx_nxshowroom_domain_model_resource.endtime>'.$now.')
+					AND tx_nxshowroom_domain_model_resource.sys_language_uid IN (0,-1)
+					AND tx_nxshowroom_domain_model_resource.pid IN (10) LIMIT '.$limit;
+
+		$query->statement($queryText);
+
+        $result = $query->execute();
+        return $result;
+
+
+	}
+
+	public function findByTagAndType($tag = 0, $typs = 0, $limit = 100) {
+		if($tag < 1){
+			return;
+		}
+		$now = time();
+        $query = $this->createQuery();
+        $query->getQuerySettings()->setReturnRawQueryResult(false);
+        $queryText = '
+			SELECT tx_nxshowroom_domain_model_resource.*
+                FROM tx_nxshowroom_resource_tags_mm AS mm
+                LEFT JOIN tx_nxshowroom_domain_model_resource ON tx_nxshowroom_domain_model_resource.uid = mm.uid_local
+
+				WHERE mm.uid_foreign IN ('.$tag.')
+					AND tx_nxshowroom_domain_model_resource.type IN ('.$typs.')
+					AND tx_nxshowroom_domain_model_resource.deleted=0
+					AND tx_nxshowroom_domain_model_resource.t3ver_state<=0
+					AND tx_nxshowroom_domain_model_resource.pid<>-1
+					AND tx_nxshowroom_domain_model_resource.hidden=0
+					AND tx_nxshowroom_domain_model_resource.starttime<='.$now.'
+					AND (tx_nxshowroom_domain_model_resource.endtime=0 OR tx_nxshowroom_domain_model_resource.endtime>'.$now.')
+					AND tx_nxshowroom_domain_model_resource.sys_language_uid IN (0,-1)
+					AND tx_nxshowroom_domain_model_resource.pid IN (10) LIMIT '.$limit;
+		$query->statement($queryText);
+        $result = $query->execute();
+        return $result;
+
+
+	}
+
 }
+
 ?>

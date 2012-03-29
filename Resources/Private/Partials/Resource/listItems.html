@@ -1,0 +1,36 @@
+<div class="row-fluid">
+<f:for each="{type.resource}" as="resource" iteration="typeTest">
+	<f:if condition="{typeTest.index} % 2">
+		<f:else>
+			<f:if condition="{typeTest.index} > 0">
+				</div>
+				<div class="row-fluid">
+			</f:if>
+		</f:else>
+	</f:if>
+	<div class="span6">
+		<div class="row-fluid">
+		<f:if condition="{resource.images.0}">
+			<f:then>
+			<div class="colLeft colImage">
+				<f:image src="{UPLOAD_FOLDER}/{resource.images.0}" alt="Test" width="170c" height="90c" />
+			</div>
+			</f:then>
+		</f:if>
+			<div class="colFlex">
+				<h3><f:link.action action="show" arguments="{resource : resource}">{resource.title}</f:link.action></h3>
+				<f:format.crop maxCharacters="180" append="&nbsp;…"><f:format.html>{resource.description}</f:format.html></f:format.crop>
+			</div>
+		</div>
+	</div>
+</f:for>
+</div>
+
+<f:if condition="{type.resource}">
+	<f:else>
+		<div class="alert alert-block">
+			<h4 class="alert-heading">Sorry!</h4>
+			In dieser Ansicht gibt es keine Elemente...
+		</div>
+	</f:else>
+</f:if>

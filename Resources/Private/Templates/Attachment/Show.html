@@ -13,5 +13,13 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
 <f:section name="main">
 	<f:flashMessages />
-	<f:render partial="Resource/Properties" arguments="{resource:resource, UPLOAD_FOLDER:UPLOAD_FOLDER}" />
+	<f:render partial="Attachment/Properties" arguments="{attachment: attachment}" />
+
+	<div class="btn-group form-actions">
+		<f:link.action action="list" controller="Resource" class="btn">
+			<i class="icon-arrow-left"></i> Back
+		</f:link.action>
+		<f:link.action action="edit" arguments="{attachment:attachment, resource:resource}"  class="btn pull-right">
+			<i class="icon-pencil"></i> Edit</f:link.action>
+	</div>
 </f:section>

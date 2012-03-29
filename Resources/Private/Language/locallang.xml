@@ -15,9 +15,9 @@
 			<label index="tx_nxshowroom_domain_model_resource.type">Type</label>
 			<label index="tx_nxshowroom_domain_model_resource.tags">Tags</label>
 			<label index="tx_nxshowroom_domain_model_attachment">Attachment</label>
-			<label index="tx_nxshowroom_domain_model_attachment.link">Link</label>
+			<label index="tx_nxshowroom_domain_model_attachment.code">Code</label>
 			<label index="tx_nxshowroom_domain_model_attachment.title">Title</label>
-			<label index="tx_nxshowroom_domain_model_attachment.description">Description / Code</label>
+			<label index="tx_nxshowroom_domain_model_attachment.description">Description</label>
 			<label index="tx_nxshowroom_domain_model_attachment.resource">Resource</label>
 			<label index="tx_nxshowroom_domain_model_type">Resource Type</label>
 			<label index="tx_nxshowroom_domain_model_type.title">Title</label>

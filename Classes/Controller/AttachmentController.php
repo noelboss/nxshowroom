@@ -5,7 +5,7 @@
  *
  *  (c) 2012 Noel Bossart <noel.bossart@me.com>, Namics AG
  *  Beat Gebistorf <beat.gebistorf@namics.com>, Namics AG
- *  
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -35,6 +35,52 @@
 class Tx_Nxshowroom_Controller_AttachmentController extends Tx_Extbase_MVC_Controller_ActionController {
 
 	/**
+	 * attachmentRepository
+	 *
+	 * @var Tx_Nxshowroom_Domain_Repository_AttachmentRepository
+	 */
+	protected $attachmentRepository;
+
+	/**
+	 * resourceRepository
+	 *
+	 * @var Tx_Nxshowroom_Domain_Repository_ResourceRepository
+	 */
+	protected $resourceRepository;
+
+	/**
+	 * injectResourceRepository
+	 *
+	 * @param Tx_Nxshowroom_Domain_Repository_ResourceRepository $resourceRepository
+	 * @return void
+	 */
+	public function injectResourceRepository(Tx_Nxshowroom_Domain_Repository_ResourceRepository $resourceRepository) {
+		$this->resourceRepository = $resourceRepository;
+	}
+
+	/**
+	 * injectAttachmentRepository
+	 *
+	 * @param Tx_Nxshowroom_Domain_Repository_AttachmentRepository $attachmentRepository
+	 * @return void
+	 */
+	public function injectAttachmentRepository(Tx_Nxshowroom_Domain_Repository_AttachmentRepository $attachmentRepository) {
+		$this->attachmentRepository = $attachmentRepository;
+	}
+
+	/**
+	 * action show
+	 *
+	 * @param Tx_Nxshowroom_Domain_Model_Attachment $attachment
+	 * @param Tx_Nxshowroom_Domain_Model_Resource $resource
+	 * @return void
+	 */
+	public function showAction(Tx_Nxshowroom_Domain_Model_Attachment $attachment, Tx_Nxshowroom_Domain_Model_Resource $resource = NULL) {
+		$this->view->assign('attachment', $attachment);
+		$this->view->assign('resource', $resource);
+	}
+
+	/**
 	 * action new
 	 *
 	 * @param $newAttachment
@@ -42,6 +88,10 @@ class Tx_Nxshowroom_Controller_AttachmentController extends Tx_Extbase_MVC_Contr
 	 * @return void
 	 */
 	public function newAction(Tx_Nxshowroom_Domain_Model_Attachment $newAttachment = NULL) {
+		$resource = $this->request->hasArgument('resource') ? $this->request->getArgument('resource') : NULL;
+		$resourceRepository = t3lib_div::makeInstance('Tx_Nxshowroom_Domain_Repository_ResourceRepository');
+
+		$this->view->assign('resource', $resourceRepository->findByUid($resource));
 		$this->view->assign('newAttachment', $newAttachment);
 	}
 
@@ -49,12 +99,14 @@ class Tx_Nxshowroom_Controller_AttachmentController extends Tx_Extbase_MVC_Contr
 	 * action create
 	 *
 	 * @param $newAttachment
+	 * @param Tx_Nxshowroom_Domain_Model_Resource $resource
 	 * @return void
 	 */
-	public function createAction(Tx_Nxshowroom_Domain_Model_Attachment $newAttachment) {
+	public function createAction(Tx_Nxshowroom_Domain_Model_Attachment $newAttachment, Tx_Nxshowroom_Domain_Model_Resource $resource) {
 		$this->attachmentRepository->add($newAttachment);
+		$resource->addAttachment($newAttachment);
 		$this->flashMessageContainer->add('Your new Attachment was created.');
-		$this->redirect('list');
+		$this->redirect('show','Resource', NULL, array('resource' => $resource->getUid()));
 	}
 
 	/**
@@ -64,6 +116,10 @@ class Tx_Nxshowroom_Controller_AttachmentController extends Tx_Extbase_MVC_Contr
 	 * @return void
 	 */
 	public function editAction(Tx_Nxshowroom_Domain_Model_Attachment $attachment) {
+		$resource = $this->request->hasArgument('resource') ? $this->request->getArgument('resource') : NULL;
+		$resourceRepository = t3lib_div::makeInstance('Tx_Nxshowroom_Domain_Repository_ResourceRepository');
+
+		$this->view->assign('resource', $resourceRepository->findByUid($resource));
 		$this->view->assign('attachment', $attachment);
 	}
 
@@ -74,9 +130,13 @@ class Tx_Nxshowroom_Controller_AttachmentController extends Tx_Extbase_MVC_Contr
 	 * @return void
 	 */
 	public function updateAction(Tx_Nxshowroom_Domain_Model_Attachment $attachment) {
+		$resource = $this->request->hasArgument('resource') ? $this->request->getArgument('resource') : NULL;
+		$resourceRepository = t3lib_div::makeInstance('Tx_Nxshowroom_Domain_Repository_ResourceRepository');
+
 		$this->attachmentRepository->update($attachment);
 		$this->flashMessageContainer->add('Your Attachment was updated.');
-		$this->redirect('list');
+
+		$this->redirect('show','Resource', NULL, array('resource' => $resourceRepository->findByUid($resource)));
 	}
 
 	/**
@@ -86,9 +146,12 @@ class Tx_Nxshowroom_Controller_AttachmentController extends Tx_Extbase_MVC_Contr
 	 * @return void
 	 */
 	public function deleteAction(Tx_Nxshowroom_Domain_Model_Attachment $attachment) {
+		$resource = $this->request->hasArgument('resource') ? $this->request->getArgument('resource') : NULL;
+
 		$this->attachmentRepository->remove($attachment);
 		$this->flashMessageContainer->add('Your Attachment was removed.');
-		$this->redirect('list');
+
+		$this->redirect('show','Resource', NULL, array('resource' => $resource->getUid()));
 	}
 
 }

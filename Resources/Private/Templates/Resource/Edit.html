@@ -12,30 +12,32 @@ Edit.html: keep
 Otherwise your changes will be overwritten the next time you save the extension in the extension builder
 
 <f:section name="main">
-	<h1>Edit Resource</h1>
 
 	<f:flashMessages />
 
 	<f:render partial="FormErrors" />
 
-	<f:form method="post" action="update" name="resource" object="{resource}" >
-		<f:render partial="Resource/FormFields" arguments="{resource:resource}" />
+	<f:form method="post" action="update" name="resource" object="{resource}" class="form-horizontal well">
+		  <fieldset>
+			<legend>Edit: {resource.title}</legend>
+			<f:render partial="Resource/FormFields" arguments="{resource:resource}" />
+		  </fieldset>
 
 		<div class="btn-group form-actions">
+			<span class="pull-right">
+				<f:link.action action="delete" arguments="{resource : resource}"  class="btn btn-danger">
+					<i class="icon-trash icon-white"></i>
+					Delete!
+				</f:link.action>
+
+			</span>
+
 			<f:link.action action="list"  class="btn  btn-large">
-				Cancel
+				<i class="icon-arrow-left"></i> Cancel
 			</f:link.action>
-			<button class="btn btn-success btn-large">
+			<button class="btn btn-success btn-large" stype="submit">
 				<i class="icon-ok icon-white"></i> Save
 			</button>
 		</div>
-
-		<section>
-			Or, if you really think it's a good idea, just
-			<f:link.action action="delete" arguments="{resource : resource}"  class="btn btn-danger btn-mini">
-				<i class="icon-trash icon-white"></i>
-				delete it!
-			</f:link.action>
-		</section>
 	</f:form>
 </f:section>

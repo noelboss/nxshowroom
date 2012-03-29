@@ -1,12 +1,45 @@
-<label for="title">
-	<f:translate key="tx_nxshowroom_domain_model_resource.title" /> <span class="required">(required)</span>
-</label><br />
-	<f:form.textfield property="title" /><br />
-<label for="description">
-	<f:translate key="tx_nxshowroom_domain_model_resource.description" /> <span class="required">(required)</span>
-</label><br />
-	<f:form.textarea property="description" cols="40" rows="15" /><br />
-<label for="images">
-	<f:translate key="tx_nxshowroom_domain_model_resource.images" />
-</label><br />
-	<f:form.upload property="images" /><br />
+<div class="control-group">
+	<label for="title"  class="control-label">
+		<f:translate key="tx_nxshowroom_domain_model_resource.title" /> *
+	</label>
+	<div class="controls">
+		<f:form.textfield property="title"  class="input-xlarge" placeholder="Title of the Code" />
+		<p class="help-inline">(required)</p>
+	</div>
+</div>
+<div class="control-group">
+	<label for="description"  class="control-label">
+		<f:translate key="tx_nxshowroom_domain_model_resource.description" /> *
+	</label>
+	<div class="controls">
+		<f:form.textarea property="description" cols="150" rows="15" class="richtext"/>
+		<p class="help-inline">(required)</p>
+	</div>
+</div>
+<div class="control-group">
+	<label for="images"  class="control-label">
+		<f:translate key="tx_nxshowroom_domain_model_resource.images" />
+	</label>
+	<div class="controls">
+		<f:form.upload property="images" />
+		<p class="help-inline">Choose an image from your Computer</p>
+	</div>
+</div>
+
+<div class="control-group">
+	<label for="attachements"  class="control-label">
+		Attachements
+	</label>
+	<div class="controls">
+		<p>
+			<f:for each="{resource.attachment}" as="attachment" key="key">
+				<f:link.action action="delete" controller="Attachment" arguments="{attachment: attachment, resource: resource}" class="btn btn-mini btn-danger">
+					<i class="icon-trash icon-white"></i> {attachment.title}
+				</f:link.action>
+			</f:for>
+			<f:link.action action="new" controller="Attachment" arguments="{newAttachment: 0, resource: resource}" class="btn btn-mini">
+				<i class="icon-plus"></i> Add
+			</f:link.action>
+		</p>
+	</div>
+</div>
